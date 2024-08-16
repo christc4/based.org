@@ -1,0 +1,6 @@
+# MOM macros with Grofff
+
+To have line break in title use two sets of "" ""
+
+.PRINTSTYLE TYPESET
+.START

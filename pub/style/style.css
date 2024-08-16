@@ -1,0 +1,139 @@
+body,
+header nav,
+nav ul {
+display: flex;
+}
+body {
+flex-wrap: wrap;
+margin-right: 10%;
+margin-left: 10%;
+text-align: justify;
+}
+header {
+flex-basis: 100%;
+flex-shrink: 0;
+}
+article {
+flex-basis: 60%;
+padding-left: 1em;
+}
+header nav {
+justify-content: space-between;
+}
+nav a {
+text-decoration: none;
+color: inherit;
+}
+body > nav {
+flex-basis: content;
+padding-right: 1vw;
+min-width: 16em;
+}
+
+nav ul {
+flex-direction: column;
+list-style-type: none;
+padding-left: 0;
+}
+
+nav li ul a {
+padding-left: 0.6em;
+width: 150px; 
+white-space: nowrap;
+overflow: hidden;
+display: block;
+text-overflow: ellipsis;
+}
+h1,
+h2,
+h3,
+h4 {
+text-align: center;
+font-weight: 400;
+line-height: 1.5;
+margin-bottom: 0.5em;
+}
+h1 {
+font-size: 180%;
+}
+h2 {
+font-size: 175%;
+}
+h3 {
+font-size: 150%;
+}
+h4 {
+font-size: 120%;
+}
+small {
+font-size: 30%;
+}
+p {
+margin-bottom: 0;
+}
+p.right {
+text-align: right;
+}
+a:link,
+a:visited {
+color: #00f;
+}
+a:hover {
+color: red;
+}
+a.thisPage {
+color: red;
+font-weight: 700;
+}
+a {
+text-decoration: none;
+}
+img {
+width: 150px;
+height: auto;
+transition: transform 0.3s ease, width 0.3s ease; /* Smooth transition for transform and width */
+}
+
+.br img {
+background-image: linear-gradient(to right, #7E481C,#4A3728,#7E481C,#4A3728);
+padding:	0.2em;
+}
+
+code, pre {
+    box-shadow: 1px 0px 5px 0px red;
+    padding: 2px; /* Adjust the padding as needed */
+    margin: 0; /* Remove any default margins */
+    display: inline-block;
+    white-space: pre-wrap; /* Allow wrapping inside pre elements if needed */
+}
+
+/*
+#side-bar ul {
+list-style-type: none;
+padding: 0;
+margin: 0;
+}
+
+#side-bar ul li {
+margin: 5px 0;
+}
+
+#side-bar ul li a {
+display: block;
+width: 150px;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+text-decoration: none;
+}
+
+ summary {
+            background-color: #f0f0f0;
+            border-radius: 4px;
+        }
+
+        /* Style the <details> element for additional effect */
+        details[open] summary {
+            background-color: #d0d0d0;
+        }
+

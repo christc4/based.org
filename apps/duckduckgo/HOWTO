@@ -1,0 +1,20 @@
+The default path for site search is /_search/.  Assuming you want to keep
+that default, you could enable site search like so:
+
+
+mkdir -p /www/werc/sites/MYSITE/_search/_werc/
+echo 'conf_enable_duckduckgo' > /www/werc/sites/MYSITE/_search/_werc/config
+mkdir -p /www/werc/sites/MYSITE/_werc/lib/
+cp /www/werc/apps/duckduckgo/footer.inc.sample /www/werc/sites/MYSITE/_werc/lib/footer.inc
+
+Searches will POST to /_search/ and from there get redirected to Duck Duck 
+Go with a site:$SERVER_NAME prefix.  To have the search path URL be some-
+thing different, you'll have to edit line 23 of app.rc to point to the new
+path.
+
+TODO: 
+* Make it automatically work no matter which directory the app is enabled in.
+* OR make the search path a configuration option.
+* Provide a template for non-footer deployment
+* Enable the search path itself to serve a search form to GET requests
+

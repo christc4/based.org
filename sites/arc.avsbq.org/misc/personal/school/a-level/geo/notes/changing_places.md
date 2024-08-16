@@ -1,0 +1,39 @@
+# Changing places 
+
+## You have studied either economic change or changing cultural characteristics. Assess the contrasting impact of one of these factors on the characters of your local and distant places.
+
+This essay will consider the impact of changing cultural characteristics on two places I have studied: central Doncaster (my local place) and Southall (a distant place). I shall examine each in turn and then try to draw some conclusions from both places.
+
+According to the census of 2021, the population of the city of Doncaster was 308,000, of which 93.6% were White, 3.4% were Asian, 1.2% were Black, 0.8% were Mixed, and 0.9% were from other ethnic groups. The largest ethnic groups within Doncaster were Pakistani and ‘White Other’ (which included eastern Europeans - Polish, Romanian, and Lithuanian), each having 2.5% of the population. The third largest was Indian, with 1% of the population.
+
+There are various cultural and community groups in central Doncaster that represent and celebrate the diversity of its residents. For example, DEMRP is a partnership of Black Asian and Minority Ethnic community groups and organisations that provide social and economic services. Another example is the Ukrainian Centre, which hosts events, as well as celebrating Ukraine’s cultural heritage. Ukrainians have been in the town since WW2 and this legacy has been key to the absorption of refugees since the start of the Russian invasion of Ukraine.
+
+The links to eastern Europe are one of the reasons behind the growth of Robin Hood Airport with many direct flights in the early 21st century. However, since the Brexit vote in 2016, many eastern Europeans have ‘gone home’, flights have reduced, and the airport has closed. There are still many such people in the town centre, explaining the medium-sized speciality supermarket, Sako Market, in the town centre.
+
+Southall, in the London borough of Ealing, is home to the largest Punjabi community outside India. Large numbers of Punjabis migrated to the UK from the subcontinent in the 1950s and 60s. In addition, many also came from East Africa, having first settled there. The culture and traditions of this thriving diaspora have led Southall to be known as Chota Panjab, or ‘Little Punjab’. The streets are lined with South Asian eateries, posters for Bollywood films and independent shops selling everything from gold jewellery to red lentils, Indian sweets to glittering saris. Southall is home to Sri Guru Singh Sabha, the largest gurdwara outside of India, which welcomes over 15,000 worshippers and visitors every week and provided more than 3,000 meals a day to people in need at the height of the COVID-19 pandemic.
+
+In 2021, almost 60% of Southall residents were born outside the UK (compared with 14% across the whole of the UK). This includes Somali, Sri Lankan, Kenyan and Polish migrants. Over 80 different languages are spoken here. In terms of religion, there are large numbers of Christians, Hindus, Muslims, and Sikhs.
+
+Southall is a vibrant place. There are many community-led projects that see residents from all backgrounds coming together to make Southall a better place to live. One example is local group kollektive, who organise local light shows to celebrate Southall’s ‘visual cultures, history and heritage’. The group worked with Crowdfund London; an initiative launched by the Mayor of London Sadiq Khan to support ‘people-powered regeneration’ of local areas. Southall’s Food Hub is another example. Created in 2020, the Hub provided food parcels to local people in need during the first COVID-19 lockdown, helping more than 400 Southall families every week.
+
+In conclusion, in both places, even though the actual numbers and proportions are different, the impacts of changing cultural characteristics are positive. During the recent world crises of Ukraine and Covid, the cultural groups in both places have acted to support their people and others. (597)
+
+You have studied either economic change or changing cultural characteristics. Assess the contrasting impact of one of these factors on the characters of your local and distant places.
+
+This essay will consider the impact of changing cultural characteristics on two places I have studied: central Doncaster (my local place) and Southall (a distant place). I shall examine each in turn and then try to draw some conclusions from both places.
+
+According to the census of 2021, the population of the city of Doncaster was 308,000, of which 93.6% were White, 3.4% were Asian, 1.2% were Black, 0.8% were Mixed, and 0.9% were from other ethnic groups. The largest ethnic groups within Doncaster were Pakistani and ‘White Other’ (which included eastern Europeans - Polish, Romanian, and Lithuanian), each having 2.5% of the population. The third largest was Indian, with 1% of the population.
+
+There are various cultural and community groups in central Doncaster that represent and celebrate the diversity of its residents. For example, DEMRP is a partnership of Black Asian and Minority Ethnic community groups and organisations that provide social and economic services. Another example is the Ukrainian Centre, which hosts events, as well as celebrating Ukraine’s cultural heritage. Ukrainians have been in the town since WW2 and this legacy has been key to the absorption of refugees since the start of the Russian invasion of Ukraine.
+
+The links to eastern Europe are one of the reasons behind the growth of Robin Hood Airport with many direct flights in the early 21st century. However, since the Brexit vote in 2016, many eastern Europeans have ‘gone home’, flights have reduced, and the airport has closed. There are still many such people in the town centre, explaining the medium-sized speciality supermarket, Sako Market, in the town centre.
+
+Southall, in the London borough of Ealing, is home to the largest Punjabi community outside India. Large numbers of Punjabis migrated to the UK from the subcontinent in the 1950s and 60s. In addition, many also came from East Africa, having first settled there. The culture and traditions of this thriving diaspora have led Southall to be known as Chota Panjab, or ‘Little Punjab’. The streets are lined with South Asian eateries, posters for Bollywood films and independent shops selling everything from gold jewellery to red lentils, Indian sweets to glittering saris. Southall is home to Sri Guru Singh Sabha, the largest gurdwara outside of India, which welcomes over 15,000 worshippers and visitors every week and provided more than 3,000 meals a day to people in need at the height of the COVID-19 pandemic.
+
+In 2021, almost 60% of Southall residents were born outside the UK (compared with 14% across the whole of the UK). This includes Somali, Sri Lankan, Kenyan and Polish migrants. Over 80 different languages are spoken here. In terms of religion, there are large numbers of Christians, Hindus, Muslims, and Sikhs.
+
+Southall is a vibrant place. There are many community-led projects that see residents from all backgrounds coming together to make Southall a better place to live. One example is local group kollektive, who organise local light shows to celebrate Southall’s ‘visual cultures, history and heritage’. The group worked with Crowdfund London; an initiative launched by the Mayor of London Sadiq Khan to support ‘people-powered regeneration’ of local areas. Southall’s Food Hub is another example. Created in 2020, the Hub provided food parcels to local people in need during the first COVID-19 lockdown, helping more than 400 Southall families every week.
+
+In conclusion, in both places, even though the actual numbers and proportions are different, the impacts of changing cultural characteristics are positive. During the recent world crises of Ukraine and Covid, the cultural groups in both places have acted to support their people and others. (597)
+
+

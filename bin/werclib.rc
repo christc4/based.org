@@ -1,0 +1,393 @@
+fn get_lib_file {
+    if(! ~ $#sitedir 0 && test -f $sitedir/_werc/lib/$1)
+        echo -n $sitedir/_werc/lib/$1
+    if not if(! ~ $#masterSite 0 && test -f $sitesdir/$masterSite/_werc/lib/$1)
+        echo -n $sitesdir/$masterSite/_werc/lib/$1
+    if not if(test -f lib/$1)
+        echo -n lib/$1
+    if not if(~ $#* 2)
+        echo -n $2
+    if not
+        status='Can''t find lib file: '$1
+}
+
+fn template { awk -f bin/template.awk $* | rc $rcargs }
+
+# Auth code
+# TODO: check http://cookies.lcs.mit.edu/pubs/webauth:tr.pdf
+allowed_user_chars='[a-zA-Z0-9_]'
+# Cookie format: WERC_USER: name:timestamp:hash(name.timestamp.password)
+# login_user can't be used from a template because it sets a cookie 
+fn login_user {
+    # Note: we set the cookie even if it is already there.
+    if(get_user $*)
+        set_cookie werc_user $"logged_user^':0:'^$"logged_password
+}
+
+# Check login status, if called with group arg we check membership too
+fn check_user {
+    get_user
+    g=($* admin)
+    _status=$status
+    if(! ~ $"_status '')
+        _status=(Not logged in: $"_status)
+    if not if(! ~ $#* 0 && ! ~ $logged_user $* && ! grep -s '^'^$logged_user^'$' $werc_root/etc/users/$g/members >[2]/dev/null)
+        _status=(User $logged_user not in: $*)
+    status=$_status
+}
+
+# If not logged in, try to get user login info from POST or from cookie
+fn get_user {
+    if(~ $#logged_user 0) {
+        if(~ $#* 2) {
+            user_name=$1 
+            user_password=$2
+        }
+        if not if(~ $REQUEST_METHOD POST)
+            get_post_args user_name user_password
+
+        if(~ $#user_name 0) { 
+            ifs=':' { cu=`{ifs=$difs {get_cookie werc_user} | tr -d $NEW_LINE} }
+            if(! ~ $#cu 0) {
+                user_name=$cu(1) 
+                user_password=$cu(3)
+            }
+        }
+        auth_user $user_name $user_password
+    }
+    if not
+        status=()
+}
+
+# Check if user_name and user_password represent a valid user account
+# If valid, 'log in' by setting logged_user
+fn auth_user {
+    user_name=$1
+    user_password=$2
+
+    pfile=$werc_root/etc/users/$"user_name/password
+    if(~ $#user_name 0 || ~ $#user_password 0)
+        status=('Auth: missing user name or pass: '^$"user_name^' / '^$"user_password)
+    if not if(! test -f $pfile)
+        status=('Auth: cant find '^$pfile)
+    if not if(! test -s $pfile || ! ~ $user_password `{cat $pfile})
+        status=('Auth: Pass '$user_password' doesnt match '^`{cat $pfile})
+    if not {
+        logged_user=$user_name
+        logged_password=$user_password
+        dprint Auth: success
+        status=()
+    }
+}
+
+fn user_controls {
+    echo User: $"logged_user
+}
+
+
+# .md '(meta-)data' extract
+fn get_md_file_attr {
+    sed -n '/^\* '$2': /p; /^\* '$2': /q; /^$/q' < $1
+}
+
+
+# File title extraction
+fn get_md_title {
+    #sed 's/^(................................................................[^ ]*).*$/\1/g; 1q' < $1 
+    sed -n -e '1N; /^.*\n===*$/N; /.*\n===*\n *$/!b' -e 's/\n==*\n//p' < $1
+}
+
+fn get_html_title {
+    t=`{sed -n '32q; s/^.*<[Tt][Ii][Tt][Ll][Ee]> *([^<]+) *(<\/[Tt][Ii][Tt][Ll][Ee]>.*)?$/\1/p' < $1}
+
+    # As a backup we might want to pick the first 'non-tag' text in the file with:
+    if(~ $"t '')
+        t=`{sed -n -e 's/^(<[^>]+>)*([^<]+).*/\2/p; 32q' < $1 | sed 1q}
+
+    echo $t
+}
+
+fn get_file_title {
+    if (~ $1 *.md)
+        get_md_title $1
+    if not if(~ $1 *.html)
+        get_html_title $1
+    if not if(~ $1 */) {
+        if(test -f $1/index.md)
+            get_md_title $1/index.md
+        if not if(test -f $1/index.html)
+            get_html_title $1/index.html
+    }
+}
+
+fn ndate {
+	if(~ $#* 7)
+		date=$*(2-)
+	if not
+		date=`{date}
+	switch($date(2)){
+	case Jan;	mo=01
+	case Feb;	mo=02
+	case Mar;	mo=03
+	case Apr;	mo=04
+	case May;	mo=05
+	case Jun;	mo=06
+	case Jul;	mo=07
+	case Aug;	mo=08
+	case Sep;	mo=09
+	case Oct;	mo=10
+	case Nov;	mo=11
+	case Dec;	mo=12
+	}
+	switch($date(3)){
+	case [0-9]
+		da=0^$date(3)
+	case *
+		da=$date(3)
+	}
+	switch($date(5)){
+	case A;	tz=+0100
+	case ADT;	tz=-0300
+	case AFT;	tz=+430
+	case AKDT;	tz=-0800
+	case AKST;	tz=-0900
+	case ALMT;	tz=+0600
+	case AMST;	tz=-0300
+	case AMT;	tz=-0400
+	case ANAST;	tz=+1200
+	case ANAT;	tz=+1200
+	case AQTT;	tz=+0500
+	case ART;	tz=-0300
+	case AST;	tz=-0400
+	case AZOST;	tz=+0000
+	case AZOT;	tz=-0100
+	case AZST;	tz=+0500
+	case AZT;	tz=+0400
+	case B;	tz=+0200
+	case BNT;	tz=+0800
+	case BOT;	tz=-0400
+	case BRST;	tz=-0200
+	case BRT;	tz=-0300
+	case BST;	tz=+0100
+	case BTT;	tz=+0600
+	case C;	tz=+0300
+	case CAST;	tz=+0800
+	case CAT;	tz=+0200
+	case CCT;	tz=+0630
+	case CDT;	tz=-0500
+	case CEST;	tz=+0200
+	case CET;	tz=+0100
+	case CHADT;	tz=+1345
+	case CHAST;	tz=+1245
+	case CKT;	tz=-1000
+	case CLST;	tz=-0300
+	case CLT;	tz=-0400
+	case COT;	tz=-0500
+	case CST;	tz=-0600
+	case CVT;	tz=-0100
+	case CXT;	tz=+0700
+	case ChST;	tz=+1000
+	case D;	tz=+0400
+	case DAVT;	tz=+0700
+	case E;	tz=+0500
+	case EASST;	tz=-0500
+	case EAST;	tz=-0600
+	case EAT;	tz=+0300
+	case ECT;	tz=-0500
+	case EDT;	tz=-0400
+	case EEST;	tz=+0300
+	case EET;	tz=+0200
+	case EGST;	tz=+0000
+	case EGT;	tz=-0100
+	case EST;	tz=-0500
+	case ET;	tz=-0500
+	case F;	tz=+0600
+	case FJST;	tz=+1300
+	case FJT;	tz=+1200
+	case FKST;	tz=-0300
+	case FKT;	tz=-0400
+	case FNT;	tz=-0200
+	case G;	tz=+0700
+	case GALT;	tz=-0600
+	case GAMT;	tz=-0900
+	case GET;	tz=+0400
+	case GFT;	tz=-0300
+	case GILT;	tz=+1200
+	case GMT;	tz=+0000
+	case GST;	tz=+0400
+	case GYT;	tz=-0400
+	case H;	tz=+0800
+	case HAA;	tz=-0300
+	case HAC;	tz=-0500
+	case HADT;	tz=-0900
+	case HAE;	tz=-0400
+	case HAP;	tz=-0700
+	case HAR;	tz=-0600
+	case HAST;	tz=-1000
+	case HAT;	tz=-0230
+	case HAY;	tz=-0800
+	case HKT;	tz=+0800
+	case HLV;	tz=-0430
+	case HNA;	tz=-0400
+	case HNC;	tz=-0600
+	case HNE;	tz=-0500
+	case HNP;	tz=-0800
+	case HNR;	tz=-0700
+	case HNT;	tz=-0330
+	case HNY;	tz=-0900
+	case HOVT;	tz=+0700
+	case I;	tz=+0900
+	case ICT;	tz=+0700
+	case IDT;	tz=+0300
+	case IOT;	tz=+0600
+	case IRDT;	tz=+0430
+	case IRKST;	tz=+0900
+	case IRKT;	tz=+0800
+	case IRST;	tz=+0330
+	case IST;	tz=+0200
+	case JST;	tz=+0900
+	case K;	tz=+1000
+	case KGT;	tz=+0600
+	case KRAST;	tz=+0800
+	case KRAT;	tz=+0700
+	case KST;	tz=+0900
+	case KUYT;	tz=+0400
+	case L;	tz=+1100
+	case LHDT;	tz=+1100
+	case LHST;	tz=+1030
+	case LINT;	tz=+1400
+	case M;	tz=+1200
+	case MAGST;	tz=+1200
+	case MAGT;	tz=+1100
+	case MART;	tz=-0930
+	case MAWT;	tz=+0500
+	case MDT;	tz=-0600
+	case MHT;	tz=+1200
+	case MMT;	tz=+0630
+	case MSD;	tz=+0400
+	case MSK;	tz=+0300
+	case MST;	tz=-0700
+	case MUT;	tz=+0400
+	case MVT;	tz=+0500
+	case MYT;	tz=+0800
+	case N;	tz=-0100
+	case NCT;	tz=+1100
+	case NDT;	tz=-0230
+	case NFT;	tz=+1130
+	case NOVST;	tz=+0700
+	case NOVT;	tz=+0600
+	case NPT;	tz=+0545
+	case NST;	tz=-0330
+	case NUT;	tz=-1100
+	case NZDT;	tz=+1300
+	case NZST;	tz=+1200
+	case O;	tz=-0200
+	case OMSST;	tz=+0700
+	case OMST;	tz=+0600
+	case P;	tz=-0300
+	case PDT;	tz=-0700
+	case PET;	tz=-0500
+	case PETST;	tz=+1200
+	case PETT;	tz=+1200
+	case PGT;	tz=+1000
+	case PHOT;	tz=+1300
+	case PHT;	tz=+0800
+	case PKT;	tz=+0500
+	case PMDT;	tz=-0200
+	case PMST;	tz=-0300
+	case PONT;	tz=+1100
+	case PST;	tz=-0800
+	case PT;	tz=-0800
+	case PWT;	tz=+0900
+	case PYST;	tz=-0300
+	case PYT;	tz=-0400
+	case Q;	tz=-0400
+	case R;	tz=-0500
+	case RET;	tz=+0400
+	case S;	tz=-0600
+	case SAMT;	tz=+0400
+	case SAST;	tz=+0200
+	case SBT;	tz=+1100
+	case SCT;	tz=+0400
+	case SGT;	tz=+0800
+	case SRT;	tz=-0300
+	case SST;	tz=-1100
+	case T;	tz=-0700
+	case TAHT;	tz=-1000
+	case TFT;	tz=+0500
+	case TJT;	tz=+0500
+	case TKT;	tz=-1000
+	case TLT;	tz=+0900
+	case TMT;	tz=+0500
+	case TVT;	tz=+1200
+	case U;	tz=-0800
+	case ULAT;	tz=+0800
+	case UYST;	tz=-0200
+	case UYT;	tz=-0300
+	case UZT;	tz=+0500
+	case V;	tz=-0900
+	case VET;	tz=-0430
+	case VLAST;	tz=+1100
+	case VLAT;	tz=+1000
+	case VUT;	tz=+1100
+	case W;	tz=-1000
+	case WAST;	tz=+0200
+	case WAT;	tz=+0100
+	case WDT;	tz=+0900
+	case WEST;	tz=+0100
+	case WET;	tz=+0000
+	case WFT;	tz=+1200
+	case WGST;	tz=-0200
+	case WGT;	tz=-0300
+	case WIB;	tz=+0700
+	case WIT;	tz=+0900
+	case WITA;	tz=+0800
+	case WST;	tz=+0800
+	case WT;	tz=+0000
+	case X;	tz=-1100
+	case Y;	tz=-1200
+	case YAKST;	tz=+1000
+	case YAKT;	tz=+0900
+	case YAPT;	tz=+1000
+	case YEKST;	tz=+0600
+	case YEKT;	tz=+0500
+	case Z;	tz=+0000
+	}
+	switch($1){
+	case -a	# rfc3339
+		tz=`{echo $tz | sed 's/00$/:00/'}
+		echo $date(6)^-$mo-$da^T^$date(4)^$tz
+	case -i	# iso-8601 lite
+		echo $date(6)^-$mo-$da
+	case -m	# rfc2822
+		echo $date(1)^, $da $date(2) $date(6) $date(4) $tz
+	case -t	# iso-8601
+		echo $date(6)^-$mo-$da^T^$date(4)^$tz
+	}
+}
+
+##########################################################################
+##########################################################################
+#app_blog_methods = ( _post index.rss )
+#fn app_blog__post {
+#    echo
+#}
+#
+#app_blog___default {
+#    if (~ $blog)
+#    call_app blogpost
+#}
+#
+## --
+#app_blogpost_methods = ( comment  _edit )
+#
+#fn app_blogpost_comment {
+#    call_app comments
+#}
+#
+## --
+#app_comments_methods = ( _post _edit )
+#
+#fn app_comments___default {
+#
+#}

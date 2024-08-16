@@ -1,0 +1,6 @@
+# Affix
+
+## -cy
+
+- idiocy
+- normalcy

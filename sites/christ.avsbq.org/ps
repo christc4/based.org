@@ -1,0 +1,92 @@
+%!PS
+%Simple Typesetting Engine with Justified paragraphs
+/margin 72 def /box [ clippath pathbbox ] def /left margin 30 add def
+/top [ left box 3 get margin sub ] cvx def /right box 2 get margin sub def
+/bot margin def /newpage { T top moveto } def /sigil<5E>def
+/br  { 0 lead neg rmoveto } def /hbr { 0 lead -0.5 mul rmoveto } def
+/cr { left currentpoint exch pop moveto } def /buf <<>> def /++ { dup load 1 add store } def
+/hr { gsave right left add 2 div  currentpoint exch pop translate
+    7.2 dup scale -32 -1 moveto -28 -3 -20 -3 0 0 curveto
+    currentpoint strokepath currentlinewidth dup 72 div setlinewidth stroke setlinewidth
+    moveto 20 3 28 3 32 -1 curveto 1 setflat
+    strokepath currentlinewidth dup 72 div setlinewidth stroke setlinewidth grestore br } def
+/rline { gsave dup stringwidth pop neg 0 rmoveto show grestore } def
+/line { gsave sigil{search{show exch token pop exec exch}{show exit}ifelse}loop grestore } def
+/par { (\n) { search exch line not { exit } if br
+    currentpoint exch pop bot lt { showpage newpage } if } loop br } def
+/last { buf buf length 1 sub get 0 get } def
+/append { buf length 0 gt { dup 0 get 0 1 getinterval (\).,) exch search { pop pop last ( ) eq
+    { buf buf length 1 sub undef } if } if pop } if buf exch buf length exch put } def
+/push { dup 0 get () eq {pop}{ dup 0 get ( ) eq { buf length 0 eq {pop}{ last ( ) eq {pop}{
+    append } ifelse } ifelse }{ append } ifelse } ifelse } def
+/trim { buf length 0 gt {last ( ) eq { buf buf length 1 sub undef } if } if } def
+/buffor{ buf 0 get 0 get ( ) eq {1}{0} ifelse  1
+    buf length last ( ) eq {2}{1} ifelse sub  4 3 roll
+    {buf exch get} /exec cvx 3 2 roll /exec cvx 4 array astore cvx  for } def
+/dump {0 {spaces s} argsbegin { 0 get ( ) eq {/spaces ++} if } buffor
+  cr { aload pop pop setfont stringwidth rmoveto } buffor /gap right currentpoint pop sub def
+  /spaceadjust gap spaces dup 0 eq {pop 1} if div def cr { aload pop /lead exch def setfont
+    {dup ==only}pop s } buffor cr br end /buf <<>> def {/ =}pop } def
+/accum {dup currentpoint pop exch stringwidth pop add right gt {{spaceadjust 0 32 4 3 roll
+    widthshow} dump } if dup stringwidth rmoveto [ exch currentfont lead ] push } def
+/jtext { ( ) { search exch dup (\() eq {accum}{accum ( ) accum} ifelse not{exit}if } loop } def
+/jpar { sigil{search{jtext exch token pop exec exch}{jtext exit}ifelse}loop {show} dump } def
+/settab{/tabstop currentpoint pop def}def /tab{tabstop currentpoint exch pop moveto}def
+/argsbegin{ dup length dict begin {exch def} forall } def /proc { token pop exch pop } def
+/fontproc {{name lead x} argsbegin ({//name //x selectfont /lead //lead def}) proc bind end } def
+/I 10 11 /Palatino-Italic fontproc def /R 10 11 /Palatino-Roman fontproc def
+/H 18 16 /Palatino-Roman fontproc def
+/B {/Palatino-Roman findfont [14 0 0 10 0 0] makefont setfont /lead 13 def} def
+/T {/Courier findfont [9 0 0 10 0 0] makefont setfont /lead 11 def} def
+
+(2004-        ) newpage rline
+(Christ Amlai         ^settab ^T dawn1000@protonmail.com) H par
+(London,    ^tab https://profile.avsbq.org
+United Kingdom) R hbr par
+
+(Objective) br B line br
+(To work in a software industry and contribute from my knowledgebase while constantly learning and adapting from others.) R hbr jpar
+
+(Education) br B line br
+(2021-2023    ) T hbr rline
+(A-Level - LAE - Stratford. ^T (BBC) Economics, English Literature, Geography \
+) R jpar
+(2024    ) T hbr rline
+(A-Level (Retake) - AEC Tutors) R par
+
+(Software skills) br B line br
+(*NIX, Linux, OpenBSD, POSIX shell, \
+HTML/CSS, LaTeX, *roff,
+nginx, httpd) R jpar
+
+(Language skills) br B line br
+(English (Native),
+Bengali (Proficient),
+Mandarin (Amateur) \
+) R jpar
+
+(Experience) br B line br
+(2021-2023    ) T hbr rline
+(Breck foundation (Voluntary) - Raised awarness on the murder of Breck Bednar, with personal guidance from Breck's late mother.
+) R jpar
+(2021-2023    ) T hbr rline
+(Smartwater - Physically tagged dozens of war memorials around the London borough of Tower Hamlets and collated findings to officials at Smartwater and the Metropolitan Police to improve tracking and forensics.
+) R jpar
+(2021-2023    ) T hbr rline
+(Laptop repairman. Performed dozens of repairs on aging ThinkPads and installed lighweight base-versions of operating systems such as GNU/Linux and NetBSD.
+) R jpar
+
+(Extracurricular) br B line br
+(2020-        ) T hbr rline
+(Study the GNU/Linux and BSD operating systems. Self-teach shell scripting.) R jpar
+(2023-        ) T hbr rline
+(Study liturgical arts under an iconographer. Learned classical egg \
+tempura painting on gesso boards.) R jpar
+
+(Portfolio) br B line R br
+(20576present ) T hbr rline
+(Iconography: A collection of traditional Eastern Orthodox iconography.
+(^T https://iconography.avsbq.org/my_works^R).
+) R par
+showpage
+

@@ -1,0 +1,7 @@
+	<<< HELPFILE FOR THE BQ TEXT EDITOR >>>
+
+	[s] - saves file
+	[.] - saves and quits file
+	[p] - prints file
+	[!] followed by [system command] - uses shell to execute given command
+- 

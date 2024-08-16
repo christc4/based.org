@@ -1,0 +1,13 @@
+body { display: flex; flex-wrap: wrap; background-color: #d9bfd8 }
+header { flex-basis: 100%; flex-shrink: 0; }
+article { flex-basis: 60%; padding-left: 1em; }
+footer { flex-basis: 100%; flex-shrink: 0; }
+header nav { display: flex; justify-content: space-between; }
+nav a, header a { text-decoration: none ; color: inherit; }
+header h1 span { margin-left: 1em; font-size: 50%; font-style: italic; }
+body > nav { flex-basis: content; padding-right: 1vw; min-width: 16em; }
+nav ul { display: flex; flex-direction: column; list-style-type: none; list-style-position: outside; padding-left: 0;  }
+nav li ul { padding-left: 0.6em }
+footer { display: flex; justify-content: space-between; }
+
+.up-button{position:fixed;top:80%;left:11%;transform:translate(-50%,-50%);height:30px;width:150px;z-index:2;background-color:rgba(136,136,204,.4);color:rgba(0,0,0,.5);cursor:pointer;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;font-size:12px;line-height:30px}

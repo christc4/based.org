@@ -1,0 +1,1 @@
+This is part one of my crusade against the pestilence that is tiling window managers, instead of having a list of talking points that people will swat away handwave, I wanted to demonstrate my workflow

@@ -1,0 +1,3 @@
+# Mice reviews
+
+<a href="contour_classic"><img src=".pix/contour_classic1.webp" style="width: 70px; height: auto;"><figcaption>Contour Classic Mouse Wired, large Left Handed</figcaption></a> <a href="mad_catz"><img src=".pix/mad_catz.webp" style="width: 70px; height: auto;"><figcaption>Madcatz R.A.T. 1</figcaption></a> <a href="logitech_g203"><img src=".pix/logitech_g203.webp" style="width: 70px; height: auto;"><figcaption>Logitech G203 Prodigy Gaming Mouse</figcaption></a> <a href="logitech_g203"><img src=".pix/g502.webp" style="width: 170px; height: auto;"><figcaption>Logitech G203 Prodigy Gaming Mouse</figcaption></a> 

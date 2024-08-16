@@ -1,0 +1,50 @@
+body {margin-right: 15%;
+      margin-left: 15%;
+      text-align: justify}
+
+hr {width: 80%; margin-top: 2em; margin-bottom: 2em;}
+
+h1, h2, h3, h4 {text-align: center; font-style: normal; font-weight: normal;
+line-height: 1.5; margin-top: .5em; margin-bottom: .5em;}
+
+h1 {font-size: 200%;}
+h2 {font-size: 175%; margin-top: 2em; margin-bottom: 1em;}
+h3 {font-size: 150%; margin-top: 1em;}
+h4 {font-size: 120%;}
+
+.no-break {page-break-before: avoid;} /* for epubs */
+
+div.chapter {page-break-before: always; margin-top: 4em;}
+
+p {text-indent: 0%;
+   margin-top: 0.5em;
+   margin-bottom: 0em; }
+
+p.noindent {text-indent: 0% }
+
+p.drama {text-indent: 0%;
+         margin-top: .5em;
+         margin-bottom: 0em; }
+
+p.right {text-align: right;}
+
+p.scenedesc {font-style: italic;
+             text-align: center;
+             margin-left: 1em;
+             margin-right: 1em;}
+
+span.charname {font-variant: small-caps;
+               font-style: normal;}
+
+div.fig { display:block;
+          margin:0 auto;
+          text-align:center;
+          margin-top: 1em;
+          margin-bottom: 1em;}
+
+a:link {color:blue; text-decoration:none}
+a:visited {color:blue; text-decoration:none}
+a:hover {color:red}
+
+
+.up-button{position:fixed;top:80%;left:11%;transform:translate(-50%,-50%);height:30px;width:150px;z-index:2;background-color:rgba(136,136,204,.4);color:rgba(0,0,0,.5);cursor:pointer;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;font-size:12px;line-height:30px}

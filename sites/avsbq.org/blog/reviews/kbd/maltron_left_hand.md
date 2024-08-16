@@ -1,0 +1,1 @@
+Im very blessed in having both hands and can therefore use the numpad with my right thumb, im sure you can do this with just software but if this was programmable i think theres hid macros , ii wouold use the numpad to launch apps or stuff

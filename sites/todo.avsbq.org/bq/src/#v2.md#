@@ -1,0 +1,10 @@
+
+pp
+i
+e main
+
+pp	fmt.Println("Enter text to append to the file. Enter '.' on a new line to save and exit err := scanner.Err(); err != nil {
+.Println("Error reading standard input:", err)
+.Exit(1)
+.Println("File saved successfully!")
+ a comment

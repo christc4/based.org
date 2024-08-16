@@ -1,0 +1,1 @@
+But lids did not start appearing on German steins until the Bubonic plague swept through Europe (in the 1300s), where insects appeared in their millions and attracted to the sweet smelling beer. The government decreed that all drinking establishments had to cover their stoneware with lids to prevent spread of disease.
